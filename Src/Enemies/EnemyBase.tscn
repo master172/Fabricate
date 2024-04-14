@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://wmm5hvndtapg"]
+
+[ext_resource type="Texture2D" uid="uid://dild4evyumi6y" path="res://Assets/Enemies/MainBox.svg" id="1_buttk"]
+[ext_resource type="Script" path="res://Src/Enemies/EnemyBase.gd" id="1_j33x1"]
+[ext_resource type="Script" path="res://Src/Player/ChargeComponent.gd" id="3_woiq1"]
+[ext_resource type="Script" path="res://Src/components/HealthComponent.gd" id="4_5vh61"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_halpe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cv0wf"]
+size = Vector2(36, 36)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x4kpi"]
+radius = 29.3177
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g8w31"]
+radius = 1103.43
+
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("navigation_agent") groups=["enemies"]]
+scale = Vector2(0.991497, 0.995046)
+collision_layer = 4
+collision_mask = 5
+script = ExtResource("1_j33x1")
+navigation_agent = NodePath("Navigation/NavigationAgent2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_halpe")
+texture = ExtResource("1_buttk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 2)
+shape = SubResource("RectangleShape2D_cv0wf")
+
+[node name="charge_component" type="Node2D" parent="."]
+script = ExtResource("3_woiq1")
+
+[node name="Navigation" type="Node2D" parent="."]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Navigation"]
+
+[node name="RecalcTimer" type="Timer" parent="Navigation"]
+wait_time = 0.2
+autostart = true
+
+[node name="health_component" type="Node2D" parent="."]
+script = ExtResource("4_5vh61")
+
+[node name="ExplodeRadius" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplodeRadius"]
+shape = SubResource("CircleShape2D_x4kpi")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_g8w31")
+
+[connection signal="timeout" from="Navigation/RecalcTimer" to="." method="_on_recalc_timer_timeout"]
+[connection signal="health_depleted" from="health_component" to="." method="die"]
+[connection signal="body_entered" from="ExplodeRadius" to="." method="_on_explode_radius_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

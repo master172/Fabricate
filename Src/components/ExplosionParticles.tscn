@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://bnqaeak8jvnpt"]
+
+[ext_resource type="Script" path="res://Src/components/ExplosionParticles.gd" id="1_fa8i0"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_06402"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_old74"]
+max_value = 2.0
+_data = [Vector2(0, 2), 0.0, 0.0, 0, 0, Vector2(1, 0), -6.16484, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_k5j10"]
+curve = SubResource("Curve_old74")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_d3jq0"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+inherit_velocity_ratio = 50.0
+spread = 180.0
+initial_velocity_min = 75.0
+initial_velocity_max = 90.0
+gravity = Vector3(0, 0, 0)
+scale_min = 7.0
+scale_max = 10.0
+scale_curve = SubResource("CurveTexture_k5j10")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_owanm"]
+radius = 74.0608
+
+[node name="ExplosionParticles" type="GPUParticles2D"]
+modulate = Color(1, 0.054902, 0, 1)
+material = SubResource("CanvasItemMaterial_06402")
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_d3jq0")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+script = ExtResource("1_fa8i0")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_owanm")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

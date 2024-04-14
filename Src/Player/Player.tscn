@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=3 uid="uid://cscdikfxqkid1"]
+
+[ext_resource type="Script" path="res://Src/Player/Player.gd" id="1_l7alk"]
+[ext_resource type="Texture2D" uid="uid://cfso8ol72mye2" path="res://Assets/Player/MasterOrb.svg" id="1_vug80"]
+[ext_resource type="PackedScene" uid="uid://ca0ctibxjucyo" path="res://Src/Player/gun.tscn" id="3_bas5x"]
+[ext_resource type="Script" path="res://Src/Player/ChargeComponent.gd" id="4_m6jl2"]
+[ext_resource type="PackedScene" uid="uid://cp1uxep6oxaen" path="res://Src/Player/hud.tscn" id="5_2ccvv"]
+[ext_resource type="Script" path="res://Src/components/HealthComponent.gd" id="6_p74hj"]
+[ext_resource type="Script" path="res://Src/Player/InventoryComponent.gd" id="7_8xcp2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2kru5"]
+radius = 21.0
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_mask = 13
+script = ExtResource("1_l7alk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_vug80")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2kru5")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CenterPos" type="Marker2D" parent="."]
+
+[node name="Gun" parent="CenterPos" node_paths=PackedStringArray("Charge_component") instance=ExtResource("3_bas5x")]
+Charge_component = NodePath("../../ChargeComponent")
+
+[node name="ChargeComponent" type="Node2D" parent="."]
+script = ExtResource("4_m6jl2")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Hud" parent="CanvasLayer" node_paths=PackedStringArray("Charge_comp", "health_comp", "inventory_comp") instance=ExtResource("5_2ccvv")]
+Charge_comp = NodePath("../../ChargeComponent")
+health_comp = NodePath("../../health_component")
+inventory_comp = NodePath("../../InventoryComponent")
+
+[node name="health_component" type="Node2D" parent="." groups=["player"]]
+script = ExtResource("6_p74hj")
+
+[node name="InventoryComponent" type="Node2D" parent="."]
+script = ExtResource("7_8xcp2")
+
+[connection signal="health_depleted" from="health_component" to="." method="die"]

@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bt4kc7r3gixl2"]
+
+[ext_resource type="Texture2D" uid="uid://yux47vgg8a3a" path="res://Assets/Collectibles/PointBox.svg" id="1_6ym25"]
+[ext_resource type="Script" path="res://Src/components/PointBox.gd" id="2_ql8ib"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_girrq"]
+radius = 308.015
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ke3lr"]
+radius = 23.0217
+
+[node name="PointBox" type="Sprite2D"]
+texture = ExtResource("1_6ym25")
+script = ExtResource("2_ql8ib")
+
+[node name="RangeArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RangeArea"]
+shape = SubResource("CircleShape2D_girrq")
+
+[node name="AddArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AddArea"]
+shape = SubResource("CircleShape2D_ke3lr")
+
+[connection signal="body_entered" from="RangeArea" to="." method="_on_range_area_body_entered"]
+[connection signal="body_entered" from="AddArea" to="." method="_on_add_area_body_entered"]

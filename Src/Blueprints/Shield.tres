@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Blueprint" load_steps=2 format=3 uid="uid://cgtlpq7a0kmdy"]
+
+[ext_resource type="Script" path="res://Src/components/Resources/Blueprint.gd" id="1_0k7ex"]
+
+[resource]
+script = ExtResource("1_0k7ex")
+Blue_print_name = "Shield"
+Blue_print_id = 0
