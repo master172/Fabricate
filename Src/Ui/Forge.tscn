@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c6h31xjpjij8v"]
+[gd_scene load_steps=12 format=3 uid="uid://c6h31xjpjij8v"]
 
 [ext_resource type="Script" path="res://Src/Ui/Forge.gd" id="1_81jhk"]
 [ext_resource type="StyleBox" uid="uid://b7vqjam41m7rt" path="res://Src/Ui/Themes/Panel.tres" id="1_kmf6e"]
@@ -43,13 +43,6 @@ corner_radius_bottom_left = 25
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5cgrm"]
 bg_color = Color(0.129412, 0.129412, 0.129412, 0.768627)
-corner_radius_top_left = 25
-corner_radius_top_right = 25
-corner_radius_bottom_right = 25
-corner_radius_bottom_left = 25
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xsr82"]
-bg_color = Color(0.0666667, 0.0666667, 0.0666667, 0.631373)
 corner_radius_top_left = 25
 corner_radius_top_right = 25
 corner_radius_bottom_right = 25
@@ -233,7 +226,7 @@ custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 theme_override_styles/panel = ExtResource("1_kmf6e")
 
-[node name="Options" type="VBoxContainer" parent="TabContainer/Equip/MainContainer/Forge/Panel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Equip/MainContainer/Forge/Panel"]
 custom_minimum_size = Vector2(256, 416)
 layout_mode = 1
 anchors_preset = 8
@@ -241,12 +234,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -0.5
-offset_top = -64.0
-offset_right = 0.5
-offset_bottom = 64.0
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Options" type="VBoxContainer" parent="TabContainer/Equip/MainContainer/Forge/Panel/ScrollContainer"]
+custom_minimum_size = Vector2(256, 416)
+layout_mode = 2
 size_flags_horizontal = 3
 theme = SubResource("Theme_cojyl")
 
@@ -277,15 +274,31 @@ layout_mode = 2
 size_flags_horizontal = 4
 expand_mode = 1
 
-[node name="Description" type="RichTextLabel" parent="TabContainer/Equip/MainContainer/Forge/Details/Details"]
+[node name="Panel" type="Panel" parent="TabContainer/Equip/MainContainer/Forge/Details/Details"]
+custom_minimum_size = Vector2(762, 160)
 layout_mode = 2
+theme_override_styles/panel = ExtResource("1_kmf6e")
+
+[node name="Description" type="RichTextLabel" parent="TabContainer/Equip/MainContainer/Forge/Details/Details/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -371.0
+offset_top = -70.0
+offset_right = 371.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 3
-theme_override_styles/normal = SubResource("StyleBoxFlat_xsr82")
 bbcode_enabled = true
 
 [node name="Buttons" type="HBoxContainer" parent="TabContainer/Equip/MainContainer"]
 custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
+theme_override_constants/separation = 0
 alignment = 1
 
 [node name="Equip" type="Button" parent="TabContainer/Equip/MainContainer/Buttons"]
@@ -296,17 +309,9 @@ size_flags_vertical = 4
 theme_override_styles/normal = SubResource("StyleBoxFlat_l5vxg")
 theme_override_styles/hover = SubResource("StyleBoxFlat_oxmto")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_npju2")
-text = "Equip"
-
-[node name="Unequip" type="Button" parent="TabContainer/Equip/MainContainer/Buttons"]
-custom_minimum_size = Vector2(256, 64)
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-theme_override_styles/normal = SubResource("StyleBoxFlat_l5vxg")
-theme_override_styles/hover = SubResource("StyleBoxFlat_oxmto")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_npju2")
-text = "Unequip"
+theme_override_styles/disabled = SubResource("StyleBoxFlat_5cgrm")
+text = "Equip
+"
 
 [node name="Button" type="Button" parent="."]
 custom_minimum_size = Vector2(32, 32)
@@ -320,4 +325,5 @@ grow_horizontal = 0
 text = "x"
 
 [connection signal="pressed" from="TabContainer/Forge/MainContainer/Buttons/Craft" to="." method="_on_craft_pressed"]
+[connection signal="pressed" from="TabContainer/Equip/MainContainer/Buttons/Equip" to="." method="_on_equip_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

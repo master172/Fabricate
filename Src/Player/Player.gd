@@ -28,3 +28,7 @@ func _physics_process(delta):
 
 func die():
 	queue_free()
+
+func add_module(module:Module):
+	var Mod = module.module.instantiate()
+	add_child(Mod)

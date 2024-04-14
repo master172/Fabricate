@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bb05u6p7ewifx"]
+
+[ext_resource type="Texture2D" uid="uid://c5ovtpbpo0mdq" path="res://Assets/Collectibles/Shield.png" id="1_gwhl7"]
+[ext_resource type="Script" path="res://Src/Ui/EquipItem.gd" id="2_k1d2a"]
+
+[node name="Item" type="Button"]
+custom_minimum_size = Vector2(0, 128)
+text = "shield"
+icon = ExtResource("1_gwhl7")
+expand_icon = true
+script = ExtResource("2_k1d2a")
