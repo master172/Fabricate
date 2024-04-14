@@ -8,6 +8,12 @@ const bullet = preload("res://Src/Weapons/Bullets/Bullet1.tscn")
 @export var Charge_component:charge_component
 
 func _physics_process(delta):
+	if ModuleInfo.player == null:
+		return
+		
+	if ModuleInfo.player.is_physics_processing() == false:
+		return
+		
 	if Input.is_action_just_pressed("shoot"):
 		shoot()
 

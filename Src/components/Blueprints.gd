@@ -4,7 +4,7 @@ var target:Node2D
 
 var move_speed:int = 500
 
-@export var Value:int = 1
+@export var blueprint:Blueprint = Blueprint.new()
 
 func _ready():
 	top_level = true
@@ -21,5 +21,5 @@ func _on_range_area_body_entered(body):
 
 func _on_add_area_body_entered(body):
 	if body.is_in_group("player"):
-		body.get_inventory_component().Metal_scraps += Value
+		body.get_inventory_component().Blueprints.append(blueprint)
 		queue_free()

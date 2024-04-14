@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Module" load_steps=5 format=3 uid="uid://0aptyx0altof"]
+
+[ext_resource type="Script" path="res://Src/components/Resources/Module.gd" id="1_276vl"]
+[ext_resource type="Resource" uid="uid://cgtlpq7a0kmdy" path="res://Src/Blueprints/Shield.tres" id="1_g48m2"]
+[ext_resource type="PackedScene" uid="uid://b4l4t3y2vsed6" path="res://Src/Modules/shield.tscn" id="2_bcg1m"]
+[ext_resource type="Texture2D" uid="uid://c5ovtpbpo0mdq" path="res://Assets/Collectibles/Shield.png" id="3_hm788"]
+
+[resource]
+script = ExtResource("1_276vl")
+sprite = ExtResource("3_hm788")
+Description = "Creates an energy force field
+
+use with left-ctrl key"
+module = ExtResource("2_bcg1m")
+Scrap_requirement = 4
+Blueprint_requirement = ExtResource("1_g48m2")

@@ -1,0 +1,323 @@
+[gd_scene load_steps=13 format=3 uid="uid://c6h31xjpjij8v"]
+
+[ext_resource type="Script" path="res://Src/Ui/Forge.gd" id="1_81jhk"]
+[ext_resource type="StyleBox" uid="uid://b7vqjam41m7rt" path="res://Src/Ui/Themes/Panel.tres" id="1_kmf6e"]
+[ext_resource type="Texture2D" uid="uid://bfpwjerbbj0q3" path="res://Assets/Collectibles/MetalScraps.png" id="2_7w7b2"]
+[ext_resource type="PackedScene" uid="uid://c32l6uldvveu7" path="res://Src/Ui/item.tscn" id="2_7woah"]
+[ext_resource type="Texture2D" uid="uid://drrxp1lvj27ke" path="res://Assets/Collectibles/Blueprint-PNG-Image.png" id="5_beuqn"]
+
+[sub_resource type="Theme" id="Theme_cojyl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pnyea"]
+bg_color = Color(0.0901961, 0.0901961, 0.0901961, 0.768627)
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 48
+corner_radius_top_right = 48
+corner_radius_bottom_right = 48
+corner_radius_bottom_left = 48
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l5vxg"]
+bg_color = Color(0.0823529, 0.0823529, 0.0823529, 0.803922)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oxmto"]
+bg_color = Color(0.603922, 0.603922, 0.603922, 0.231373)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_npju2"]
+bg_color = Color(0, 0, 0, 0.729412)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5cgrm"]
+bg_color = Color(0.129412, 0.129412, 0.129412, 0.768627)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xsr82"]
+bg_color = Color(0.0666667, 0.0666667, 0.0666667, 0.631373)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[node name="Forge" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_81jhk")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.352941)
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Forge" type="TabBar" parent="TabContainer"]
+layout_mode = 2
+
+[node name="MainContainer" type="VBoxContainer" parent="TabContainer/Forge"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Forge" type="HBoxContainer" parent="TabContainer/Forge/MainContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="TabContainer/Forge/MainContainer/Forge"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("1_kmf6e")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Forge/MainContainer/Forge/Panel"]
+custom_minimum_size = Vector2(256, 416)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Options" type="VBoxContainer" parent="TabContainer/Forge/MainContainer/Forge/Panel/ScrollContainer"]
+custom_minimum_size = Vector2(256, 416)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_cojyl")
+
+[node name="Item" parent="TabContainer/Forge/MainContainer/Forge/Panel/ScrollContainer/Options" instance=ExtResource("2_7woah")]
+layout_mode = 2
+
+[node name="Details" type="Panel" parent="TabContainer/Forge/MainContainer/Forge"]
+custom_minimum_size = Vector2(830, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_pnyea")
+
+[node name="Details" type="VBoxContainer" parent="TabContainer/Forge/MainContainer/Forge/Details"]
+custom_minimum_size = Vector2(762, 424)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -130.0
+offset_right = 128.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Image" type="TextureRect" parent="TabContainer/Forge/MainContainer/Forge/Details/Details"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+size_flags_horizontal = 4
+expand_mode = 1
+
+[node name="Panel" type="Panel" parent="TabContainer/Forge/MainContainer/Forge/Details/Details"]
+custom_minimum_size = Vector2(762, 160)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("1_kmf6e")
+
+[node name="Description" type="RichTextLabel" parent="TabContainer/Forge/MainContainer/Forge/Details/Details/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -371.0
+offset_top = -70.0
+offset_right = 371.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+
+[node name="Buttons" type="HBoxContainer" parent="TabContainer/Forge/MainContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Craft" type="Button" parent="TabContainer/Forge/MainContainer/Buttons"]
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_l5vxg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_oxmto")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_npju2")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_5cgrm")
+text = "forge"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Forge/MainContainer/Buttons"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+
+[node name="Scraps" type="Button" parent="TabContainer/Forge/MainContainer/Buttons/VBoxContainer"]
+custom_minimum_size = Vector2(62, 0)
+layout_mode = 2
+size_flags_vertical = 3
+disabled = true
+icon = ExtResource("2_7w7b2")
+flat = true
+expand_icon = true
+
+[node name="Blueprint" type="Button" parent="TabContainer/Forge/MainContainer/Buttons/VBoxContainer"]
+custom_minimum_size = Vector2(62, 0)
+layout_mode = 2
+size_flags_vertical = 3
+disabled = true
+icon = ExtResource("5_beuqn")
+flat = true
+expand_icon = true
+
+[node name="Equip" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="MainContainer" type="VBoxContainer" parent="TabContainer/Equip"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Forge" type="HBoxContainer" parent="TabContainer/Equip/MainContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="TabContainer/Equip/MainContainer/Forge"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("1_kmf6e")
+
+[node name="Options" type="VBoxContainer" parent="TabContainer/Equip/MainContainer/Forge/Panel"]
+custom_minimum_size = Vector2(256, 416)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -64.0
+offset_right = 0.5
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_cojyl")
+
+[node name="Details" type="Panel" parent="TabContainer/Equip/MainContainer/Forge"]
+custom_minimum_size = Vector2(830, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_pnyea")
+
+[node name="Details" type="VBoxContainer" parent="TabContainer/Equip/MainContainer/Forge/Details"]
+custom_minimum_size = Vector2(762, 424)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -130.0
+offset_right = 128.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Image" type="TextureRect" parent="TabContainer/Equip/MainContainer/Forge/Details/Details"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+size_flags_horizontal = 4
+expand_mode = 1
+
+[node name="Description" type="RichTextLabel" parent="TabContainer/Equip/MainContainer/Forge/Details/Details"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_xsr82")
+bbcode_enabled = true
+
+[node name="Buttons" type="HBoxContainer" parent="TabContainer/Equip/MainContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+alignment = 1
+
+[node name="Equip" type="Button" parent="TabContainer/Equip/MainContainer/Buttons"]
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_l5vxg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_oxmto")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_npju2")
+text = "Equip"
+
+[node name="Unequip" type="Button" parent="TabContainer/Equip/MainContainer/Buttons"]
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_l5vxg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_oxmto")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_npju2")
+text = "Unequip"
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -8.0
+offset_bottom = 8.0
+grow_horizontal = 0
+text = "x"
+
+[connection signal="pressed" from="TabContainer/Forge/MainContainer/Buttons/Craft" to="." method="_on_craft_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

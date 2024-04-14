@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4l4t3y2vsed6"]
+
+[ext_resource type="Texture2D" uid="uid://c5ovtpbpo0mdq" path="res://Assets/Collectibles/Shield.png" id="1_hig33"]
+
+[node name="Shield" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_hig33")

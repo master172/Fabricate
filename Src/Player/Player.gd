@@ -5,6 +5,10 @@ extends CharacterBody2D
 @onready var Charge_component :charge_component= $ChargeComponent
 @onready var inventory_component :Inventory_component= $InventoryComponent
 
+func _ready():
+	ModuleInfo.inventory = inventory_component
+	ModuleInfo.player = self
+	
 func get_health_component():
 	return Health_component
 

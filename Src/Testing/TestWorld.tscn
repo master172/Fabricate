@@ -1,12 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://cxbqs71yqr40r"]
+[gd_scene load_steps=10 format=3 uid="uid://cxbqs71yqr40r"]
 
 [ext_resource type="PackedScene" uid="uid://cscdikfxqkid1" path="res://Src/Player/Player.tscn" id="1_oa8dd"]
 [ext_resource type="Texture2D" uid="uid://dvhht8jb5qis4" path="res://icon.svg" id="2_2owvb"]
 [ext_resource type="PackedScene" uid="uid://bt4kc7r3gixl2" path="res://Src/components/PointBox.tscn" id="3_lsvrf"]
-[ext_resource type="PackedScene" uid="uid://bytx1k82ge10s" path="res://Src/Enemies/EnemyShooter.tscn" id="4_6ss7n"]
-[ext_resource type="Texture2D" uid="uid://ddesptdc0p2bv" path="res://Assets/Locations/ForgePoint.svg" id="5_xwd5m"]
 [ext_resource type="PackedScene" uid="uid://ld34i1qjdxy1" path="res://Src/components/MetalScraps.tscn" id="6_5ueol"]
 [ext_resource type="PackedScene" uid="uid://dk4c8dc6tt1di" path="res://Src/components/Blueprints.tscn" id="7_n2041"]
+[ext_resource type="PackedScene" uid="uid://dpgvv7cslcpy0" path="res://Src/World/Environment/forge_point.tscn" id="8_gegqv"]
 [ext_resource type="Resource" uid="uid://cgtlpq7a0kmdy" path="res://Src/Blueprints/Shield.tres" id="8_pfk6v"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_yc2ua"]
@@ -19,10 +18,8 @@ source_geometry_group_name = &"navigation_polygon_source_group"
 
 [node name="World" type="Node2D"]
 
-[node name="ForgePoint" type="Sprite2D" parent="."]
-texture_filter = 1
-position = Vector2(119, -383)
-texture = ExtResource("5_xwd5m")
+[node name="ForgePoint" parent="." instance=ExtResource("8_gegqv")]
+position = Vector2(65, -294)
 
 [node name="Player" parent="." instance=ExtResource("1_oa8dd")]
 texture_filter = 1
@@ -44,11 +41,23 @@ position = Vector2(-260, 98)
 [node name="PointBox2" parent="." instance=ExtResource("3_lsvrf")]
 position = Vector2(-253, 126)
 
-[node name="Enemy" parent="." instance=ExtResource("4_6ss7n")]
-position = Vector2(753, 531)
-
 [node name="MeatalScraps" parent="." instance=ExtResource("6_5ueol")]
 position = Vector2(-252, -515)
+
+[node name="MeatalScraps2" parent="." instance=ExtResource("6_5ueol")]
+position = Vector2(-237, -449)
+
+[node name="MeatalScraps3" parent="." instance=ExtResource("6_5ueol")]
+position = Vector2(-333, -515)
+
+[node name="MeatalScraps4" parent="." instance=ExtResource("6_5ueol")]
+position = Vector2(-230, -516)
+
+[node name="MeatalScraps5" parent="." instance=ExtResource("6_5ueol")]
+position = Vector2(-189, -547)
+
+[node name="MeatalScraps6" parent="." instance=ExtResource("6_5ueol")]
+position = Vector2(-307, -454)
 
 [node name="BluePrints" parent="." instance=ExtResource("7_n2041")]
 position = Vector2(384, -674)

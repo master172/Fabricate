@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://c32l6uldvveu7"]
+
+[ext_resource type="Texture2D" uid="uid://c5ovtpbpo0mdq" path="res://Assets/Collectibles/Shield.png" id="1_qyps5"]
+[ext_resource type="Script" path="res://Src/Ui/Item.gd" id="2_i8o38"]
+[ext_resource type="Resource" uid="uid://0aptyx0altof" path="res://Src/Modules/Shield.tres" id="3_sofej"]
+
+[node name="Item" type="Button"]
+custom_minimum_size = Vector2(0, 128)
+text = "shield"
+icon = ExtResource("1_qyps5")
+expand_icon = true
+script = ExtResource("2_i8o38")
+Item = ExtResource("3_sofej")
